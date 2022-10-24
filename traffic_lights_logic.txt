@@ -28,9 +28,11 @@ If ICD is 0, designate 30 seconds for pedestrians to cross Heavy traffic road
 
 -> if (ICD_Pedestrian == 0) { // Wait until ICD refreshes
     -> HY & LR
+    -> HR & LR
     -> HR & LG
     wait (30 seconds)
     -> HR & LY
+    -> HR & LR
     -> HG & LR
     -> ICD_Pedestrian = 1
 }
@@ -43,9 +45,11 @@ Let the cars waiting in light traffic pass for 30 seconds
 -> if (ICD_Car == 0) { // Wait until ICD refreshes
     wait (15 seconds)
     -> HY & LR
+    -> HR & LR
     -> HR & LG
     wait (30 seconds)
     -> HR & LY
+    -> HR & LR
     -> HG & LR 
 }
 
@@ -57,9 +61,11 @@ Give 15 second buffer time for heavy traffic to pass then let pedestrians and li
 -> (if ICD_Car == 0 && ICD_Pedestrian == 0) { // Wait until ICD refreshes
     wait (15 seconds)
     -> HY & LR
+    -> HR & LR
     -> HR & LG
     wait (30 seconds)
     -> HR & LY
+    -> HR & LR
     -> HG & LR
 }
 
