@@ -1,0 +1,22 @@
+Traffic Light Project:
+
+Design, and prototype a Traffic Light
+
+The traffic light is at an intersection that has heavy traffic in one direction and light traffic in the other. 
+The heavy traffic is given the priority by default. There are two switch inputs, one indicating that cars are waiting on the light road,
+the other indicating that a pedestrian is waiting to cross the heavy traffic lane.
+
+All lights and switches are in a single location with 4 wires running to it.
+It is sufficient to have 3 LED's in each direction to demonstrate proper operation
+
+The I2C port expansion chips that is available for this task are PCF8574.
+
+There is liberty in the time spent between each intermission of lights, and which group receives priority under a jammed situation.
+
+The Design Package should include:
+- specifications
+- a state diagram
+- schematic
+- bill of material
+- code
+- a working prototype
