@@ -1,0 +1,77 @@
+Logic for operating traffic lights
+
+Define:
+
+PH = Pedestrian waiting
+PL = No pedestrian waiting
+
+CH = Cars waiting on light road
+CL = No cars waiting on light road
+
+HG = Heavy light green
+HY = Heavy light yellow
+HR = Heavy light red
+
+LG = Light light green
+LY = Light light yellow
+LR = Light light red
+
+LOOP {
+Case 1: PL & CL
+By default
+-> HG & LR
+
+Case 2: PH & CL
+Give 15 seconds of buffer in addition to the ICD for pedestrians passing prior to this call. 
+If ICD is 0, designate 30 seconds for pedestrians to cross Heavy traffic road
+-> HG & LR
+
+-> if (ICD_Pedestrian == 0) { // Wait until ICD refreshes
+    -> HY & LR
+    -> HR & LG
+    wait (30 seconds)
+    -> HR & LY
+    -> HG & LR
+    -> ICD_Pedestrian = 1
+}
+
+Case 3: PL & CH
+Give 30 seconds of buffer time for heavy traffic to pass in addition to the ICD.
+Let the cars waiting in light traffic pass for 30 seconds
+-> HG & LR
+
+-> if (ICD_Car == 0) { // Wait until ICD refreshes
+    wait (15 seconds)
+    -> HY & LR
+    -> HR & LG
+    wait (30 seconds)
+    -> HR & LY
+    -> HG & LR 
+}
+
+
+Case 4: PH & CH
+Give 15 second buffer time for heavy traffic to pass then let pedestrians and light traffic pass for 30 seconds
+-> HG & LR
+
+-> (if ICD_Car == 0 && ICD_Pedestrian == 0) { // Wait until ICD refreshes
+    wait (15 seconds)
+    -> HY & LR
+    -> HR & LG
+    wait (30 seconds)
+    -> HR & LY
+    -> HG & LR
+}
+
+Default Case: Checking ICD
+
+-> if (ICD_Car == 1) {
+    wait (30 seconds)
+    -> ICD_Car == 0
+}
+
+-> if (ICD_Pedestrian == 1) {
+    wait (30 seconds)
+    -> ICD_Pedestrian == 0
+}
+}
