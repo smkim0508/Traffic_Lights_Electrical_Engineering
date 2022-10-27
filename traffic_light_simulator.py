@@ -12,6 +12,8 @@
 # LY = Light light yellow
 # LR = Light light red
 
+import time 
+
 #P = pedestrian count, 0 1 (no pedestrian, pedestrian waiting)
 #C = car on light road count, (0, 1) = (no car, car waiting)
 
@@ -29,9 +31,9 @@ ICD_C = 0
 def no_p_no_c():
     if (H == 2 and L == 0):
         L = 1
-        # wait 2 second
+        time.sleep(2) 
         L = 2
-        # wait 1 second
+        time.sleep(1)
         H = 0
     else:
         H = 0
@@ -47,11 +49,11 @@ def yes_p_yes_c():
 
 async def check_ICD():
     if (ICD_P == 1):
-        # wait 30 seconds
+        time.sleep(30)
         ICD_P = 0
 
     if (ICD_C == 1):
-        # wait 30 seconds
+        time.sleep(30)
         ICD_C = 0
 
 while (True):
