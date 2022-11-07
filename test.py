@@ -6,3 +6,10 @@ def test():
 res = test()
 print(res)
 print(res[1])
+
+t = 1
+f = 0
+
+# while not f: print("false")
+
+while f or t: print("either true")
