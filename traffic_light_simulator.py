@@ -37,6 +37,15 @@ ICD_P = 0
 ICD_C = 0
 
 def no_p_no_c():
+    # global variable declarations
+    global H
+    global L
+    global P
+    global C
+    
+    global ICD_P
+    global ICD_C
+
     if (H == 2 and L == 0):
         L = 1
         time.sleep(2) 
@@ -50,38 +59,83 @@ def no_p_no_c():
     C = 0
 
 def no_p_yes_c():
-    while ICD_C: time.sleep(0.1)
+    # global variable declarations
+    global H
+    global L
+    global P
+    global C
+    
+    global ICD_C
+
+    while ICD_C:
+        time.sleep(0.1)
+
+    print("buffer time")
     time.sleep(30)
+    print("heavy road yellow")
     H = 1
     time.sleep(2)
+    print("heavy road red")
     H = 2
     time.sleep(1)
+    print("light road green")
     L = 0
+    print("cars passing")
     time.sleep(30) # cars passing
     P = 0
     C = 0
     ICD_C = 1
 
 def yes_p_no_c():
-    while ICD_P: time.sleep(0.1)
+    # global variable declarations
+    global H
+    global L
+    global P
+    global C
+    
+    global ICD_P
+
+    while ICD_P:
+        time.sleep(0.1)
+
+    print("buffer time")
     time.sleep(15)
+    print("heavy road yellow")
     H = 1
     time.sleep(2)
+    print("heavy road red")
     H = 2
     time.sleep(1)
+    print("light road green")
     L = 0
+    print("pedestrian crossing")
     time.sleep(30) # pedestrians crossing
     P = 0
     C = 0
     ICD_P = 1
 
 def yes_p_yes_c():
-    while (ICD_P or ICD_C): time.sleep(0.1)
+    # global variable declarations
+    global H
+    global L
+    global P
+    global C
+    
+    global ICD_P
+    global ICD_C
+
+    while (ICD_P or ICD_C):
+        time.sleep(0.1)
+        
+    print("buffer time")
     time.sleep(15)
+    print("heavy road yellow")
     H = 1
     time.sleep(2)
+    print("heavy road red")
     H = 2
     time.sleep(1)
+    print("light road green")
     L = 0
     time.sleep(30) # pedestrians crossing
     P = 0
@@ -90,6 +144,10 @@ def yes_p_yes_c():
     ICD_C = 1
 
 async def check_ICD():
+    # global variable declarations
+    global ICD_P
+    global ICD_C
+
     if (ICD_P == 1):
         time.sleep(30)
         ICD_P = 0
@@ -99,6 +157,9 @@ async def check_ICD():
         ICD_C = 0
 
 while (True):
+    P = int(input("enter P"))
+    C = int(input("enter C"))
+    time.sleep(1)
     if (P == 0 and C == 0):
         no_p_no_c()
     elif (P == 0 and C == 1):
@@ -107,7 +168,17 @@ while (True):
         yes_p_no_c()
     elif (P == 1 and C == 1):
         yes_p_yes_c()
+        
     check_ICD()
-    
+
+    print("P is: " + str(P))
+    print("C is: " + str(C))
+    print("H is: " + str(H))
+    print("L is: " + str(L))
+
+    print("ICD_P is: " + str(ICD_P))
+    print("ICD_C is: " + str(ICD_C))
+
+   
     
     

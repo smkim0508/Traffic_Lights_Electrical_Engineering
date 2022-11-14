@@ -1,15 +1,25 @@
+ans = 1
+
 def test():
-    a = 3
-    b = 4
-    return a, b
+    global ans
+    ans += 1
+    res = ans
+    
+    return res
+    
 
-res = test()
-print(res)
-print(res[1])
+while(True):
+    p = test()
+    print(p)
 
-t = 1
-f = 0
 
-# while not f: print("false")
+# res = test()
+# print(res)
+# print(res[1])
 
-while f or t: print("either true")
+# t = 1
+# f = 0
+
+# # while not f: print("false")
+
+# while f or t: print("either true")
