@@ -21,6 +21,8 @@
 
 # ICD = Internal Cooldown; the time between each function call is permitted
 
+#necessary libraries & modules
+
 import time 
 import asyncio
 
