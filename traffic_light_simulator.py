@@ -40,8 +40,8 @@ ICD_C = 0
 
 ICD_check = 0
 
-time1 = 2
-time2 = 2
+time1 = 5
+time2 = 5
 
 def no_p_no_c():
     # global variable declarations
@@ -83,6 +83,7 @@ def no_p_yes_c():
 
     while ICD_C:
         time.sleep(0.1)
+        print("ICD for Car")
 
     print("buffer time")
     time.sleep(time2)
@@ -116,6 +117,7 @@ def yes_p_no_c():
 
     while ICD_P:
         time.sleep(0.1)
+        print("ICD for Pedestrian")
 
     print("buffer time")
     time.sleep(time1)
@@ -150,8 +152,7 @@ def yes_p_yes_c():
 
     while (ICD_P or ICD_C):
         time.sleep(0.1)
-        print(ICD_P)
-        print(ICD_C)
+        print("ICD")
         
     print("buffer time")
     time.sleep(time1)
