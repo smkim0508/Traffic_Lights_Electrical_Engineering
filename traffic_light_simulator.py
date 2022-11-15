@@ -36,6 +36,11 @@ L = 2
 ICD_P = 0
 ICD_C = 0
 
+ICD_check = 0
+
+time1 = 2
+time2 = 2
+
 def no_p_no_c():
     # global variable declarations
     global H
@@ -67,11 +72,14 @@ def no_p_yes_c():
     
     global ICD_C
 
+    global time1
+    global time2
+
     while ICD_C:
         time.sleep(0.1)
 
     print("buffer time")
-    time.sleep(30)
+    time.sleep(time2)
     print("heavy road yellow")
     H = 1
     time.sleep(2)
@@ -81,7 +89,7 @@ def no_p_yes_c():
     print("light road green")
     L = 0
     print("cars passing")
-    time.sleep(30) # cars passing
+    time.sleep(time2) # cars passing
     P = 0
     C = 0
     ICD_C = 1
@@ -95,11 +103,14 @@ def yes_p_no_c():
     
     global ICD_P
 
+    global time1
+    global time2
+
     while ICD_P:
         time.sleep(0.1)
 
     print("buffer time")
-    time.sleep(15)
+    time.sleep(time1)
     print("heavy road yellow")
     H = 1
     time.sleep(2)
@@ -109,7 +120,7 @@ def yes_p_no_c():
     print("light road green")
     L = 0
     print("pedestrian crossing")
-    time.sleep(30) # pedestrians crossing
+    time.sleep(time2) # pedestrians crossing
     P = 0
     C = 0
     ICD_P = 1
@@ -124,11 +135,16 @@ def yes_p_yes_c():
     global ICD_P
     global ICD_C
 
+    global time1
+    global time2
+
     while (ICD_P or ICD_C):
         time.sleep(0.1)
+        print(ICD_P)
+        print(ICD_C)
         
     print("buffer time")
-    time.sleep(15)
+    time.sleep(time1)
     print("heavy road yellow")
     H = 1
     time.sleep(2)
@@ -137,7 +153,7 @@ def yes_p_yes_c():
     time.sleep(1)
     print("light road green")
     L = 0
-    time.sleep(30) # pedestrians crossing
+    time.sleep(time2) # pedestrians crossing
     P = 0
     C = 0
     ICD_P = 1
@@ -148,13 +164,27 @@ async def check_ICD():
     global ICD_P
     global ICD_C
 
-    if (ICD_P == 1):
-        time.sleep(30)
-        ICD_P = 0
+    global ICD_check
 
-    if (ICD_C == 1):
-        time.sleep(30)
+    global time2
+
+    print("base")
+
+    if (ICD_P == 1 and ICD_check == 0):
+        print("pre pedestrian")
+        ICD_check = 1
+        time.sleep(time2)
+        print("post pedestrian")
+        ICD_P = 0
+        ICD_check = 0
+
+    if (ICD_C == 1 and ICD_check == 0):
+        print("pre car")
+        ICD_check = 1
+        time.sleep(time2)
+        print("post car")
         ICD_C = 0
+        ICD_check = 0
 
 while (True):
     P = int(input("enter P"))
