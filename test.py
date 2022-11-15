@@ -34,17 +34,30 @@ import asyncio
 
 async def timer():
     print("2")
-    await asyncio.sleep(5)
+    # await asyncio.sleep(5)
+    time.sleep(5)
     print("4")
 
 async def timer2():
     print("5")
-    await asyncio.sleep(2)
+    # await asyncio.sleep(2)
+    time.sleep(2)
     print("6")
 
 async def timer3():
-    await timer()
-    await timer2()
+    loop = asyncio.get_event_loop()
+    loop.create_task(timer())
+    loop.create_task(timer2())
+    # asyncio.create_task(timer())
+    # asyncio.create_task(timer2())
+    # asyncio.get_running_loop()
+   
+    # loop = asyncio.new_event_loop()
+    # asyncio.set_event_loop(loop)
+    # loop.create_task(timer())
+    # # loop.create_task(timer2())
+    # loop.run_forever()
+
 
 print("1")
 # time = loop.create_task(timer())
