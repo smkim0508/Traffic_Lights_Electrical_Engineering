@@ -26,6 +26,8 @@
 import time 
 import asyncio
 
+from threading import Thread
+
 # global variables
 
 P = 0
@@ -51,6 +53,8 @@ def no_p_no_c():
     global ICD_P
     global ICD_C
 
+    print("case 1")
+
     if (H == 2 and L == 0):
         L = 1
         time.sleep(2) 
@@ -74,6 +78,8 @@ def no_p_yes_c():
 
     global time1
     global time2
+
+    print("case 2")
 
     while ICD_C:
         time.sleep(0.1)
@@ -105,6 +111,8 @@ def yes_p_no_c():
 
     global time1
     global time2
+
+    print("case 3")
 
     while ICD_P:
         time.sleep(0.1)
@@ -138,6 +146,8 @@ def yes_p_yes_c():
     global time1
     global time2
 
+    print("case 4")
+
     while (ICD_P or ICD_C):
         time.sleep(0.1)
         print(ICD_P)
@@ -159,7 +169,7 @@ def yes_p_yes_c():
     ICD_P = 1
     ICD_C = 1
 
-async def check_ICD():
+def check_ICD():
     # global variable declarations
     global ICD_P
     global ICD_C
@@ -168,38 +178,50 @@ async def check_ICD():
 
     global time2
 
-    print("base")
+    # print("base")
 
     if (ICD_P == 1 and ICD_check == 0):
-        print("pre pedestrian")
+        # print("pre pedestrian")
         ICD_check = 1
         time.sleep(time2)
-        print("post pedestrian")
+        # print("post pedestrian")
         ICD_P = 0
         ICD_check = 0
 
     if (ICD_C == 1 and ICD_check == 0):
-        print("pre car")
+        # print("pre car")
         ICD_check = 1
         time.sleep(time2)
-        print("post car")
+        # print("post car")
         ICD_C = 0
         ICD_check = 0
 
 while (True):
+
+    # threading functions declaration
+    x = Thread(target = no_p_no_c)
+    y = Thread(target = no_p_yes_c)
+    w = Thread(target = yes_p_no_c)
+    z = Thread(target = yes_p_yes_c)
+    check = Thread(target = check_ICD)
+
     P = int(input("enter P"))
     C = int(input("enter C"))
     time.sleep(1)
     if (P == 0 and C == 0):
+        # x.start()
         no_p_no_c()
     elif (P == 0 and C == 1):
+        # y.start()
         no_p_yes_c()
     elif (P == 1 and C == 0):
+        # w.start()
         yes_p_no_c()
     elif (P == 1 and C == 1):
+        # z.start()
         yes_p_yes_c()
         
-    check_ICD()
+    check.start()
 
     print("P is: " + str(P))
     print("C is: " + str(C))
