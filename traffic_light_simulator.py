@@ -197,40 +197,47 @@ def check_ICD():
         ICD_C = 0
         ICD_check = 0
 
-while (True):
+if __name__ == '__main__':
 
-    # threading functions declaration
-    x = Thread(target = no_p_no_c)
-    y = Thread(target = no_p_yes_c)
-    w = Thread(target = yes_p_no_c)
-    z = Thread(target = yes_p_yes_c)
-    check = Thread(target = check_ICD)
+    while (True):
+        # threading functions declaration
+        x = Thread(target = no_p_no_c)
+        y = Thread(target = no_p_yes_c)
+        w = Thread(target = yes_p_no_c)
+        z = Thread(target = yes_p_yes_c)
+        check = Thread(target = check_ICD)
 
-    P = int(input("enter P"))
-    C = int(input("enter C"))
-    time.sleep(1)
-    if (P == 0 and C == 0):
-        # x.start()
-        no_p_no_c()
-    elif (P == 0 and C == 1):
-        # y.start()
-        no_p_yes_c()
-    elif (P == 1 and C == 0):
-        # w.start()
-        yes_p_no_c()
-    elif (P == 1 and C == 1):
-        # z.start()
-        yes_p_yes_c()
+        P = int(input("enter P"))
+        if (P != 0 and P != 1):
+            print("please enter a P value of either 0 or 1")
+        C = int(input("enter C"))
+        if (C != 0 and C != 1):
+            print("please enter a C value of either 0 or 1")
+            
+        # time.sleep(1)
         
-    check.start()
+        if (P == 0 and C == 0):
+            # x.start()
+            no_p_no_c()
+        elif (P == 0 and C == 1):
+            # y.start()
+            no_p_yes_c()
+        elif (P == 1 and C == 0):
+            # w.start()
+            yes_p_no_c()
+        elif (P == 1 and C == 1):
+            # z.start()
+            yes_p_yes_c()
+            
+        check.start()
 
-    print("P is: " + str(P))
-    print("C is: " + str(C))
-    print("H is: " + str(H))
-    print("L is: " + str(L))
+        print("P is: " + str(P))
+        print("C is: " + str(C))
+        print("H is: " + str(H))
+        print("L is: " + str(L))
 
-    print("ICD_P is: " + str(ICD_P))
-    print("ICD_C is: " + str(ICD_C))
+        print("ICD_P is: " + str(ICD_P))
+        print("ICD_C is: " + str(ICD_C))
 
    
     
