@@ -2,11 +2,33 @@
 A project to construct a functional traffic lights system for Advanced Electrical Engineering course
 
 ## How to Run
-To initiate the traffic light system, run as follows:
+First, make sure that all necessary Python modules are installed. 
+
+Then, to initiate the traffic light simulation system, run as follows:
 ```
 python3.7 traffic_light_simulator.py
 ```
 This should prompt an user input on the terminal where you can input the pedestrian or car traffic. 
+
+In order to run the arduino control function via pyserial, first create an Arduino script after you have modeled the traffic light system via components like LEDs. In this script, you should trigger all of the output signals through the serial port input by using the following structure:
+```
+yourVar = Serial.read();
+
+if (yourVar = LG) { // LG = light traffic road green
+    digitalWrite(yourPin1, HIGH);
+}
+if (yourVar = HG) { // HG = heavy traffic road green
+    digitalWrite(yourPin2, HIGH);
+} 
+...
+```
+Once you have finished your arduino script, set up the Serial Port accordingly in the python script by changing the variable: *PORT* to the port that is connected to your Arduino board.
+
+Finally, run the following command: 
+```
+python3.7 traffic_light_arduino.py
+```
+As with the simulator, this will prompt an user input on the terminal. 
 
 *Note: if using a different version of Python, some threading function syntex may need to be changed. Please visit the official threading Python documentation for more information: https://docs.python.org/3.10/library/threading.html*
 ## Project Description
