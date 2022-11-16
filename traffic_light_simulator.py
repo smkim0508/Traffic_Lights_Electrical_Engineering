@@ -13,14 +13,16 @@
 # LY = Light light yellow
 # LR = Light light red
 
-# P = pedestrian count, 0 1 (no pedestrian, pedestrian waiting)
-# C = car on light road count, (0, 1) = (no car, car waiting)
+# P = Pedestrian count, 0 1 (no pedestrian, pedestrian waiting)
+# C = Car on light road count, (0, 1) = (no car, car waiting)
 
-# H = heavy light traffic signal, (0, 1, 2) = (green, yellow, red)
-# L = light light traffic signal, (0, 1, 2) = (green, yellow, red)
+# H = Heavy light traffic signal, (0, 1, 2) = (green, yellow, red)
+# L = Light light traffic signal, (0, 1, 2) = (green, yellow, red)
 
 # ICD = Internal Cooldown; the time between each function call is permitted
+# ICD_checker = Checker that makes sure the ICD wait function is not indefinitely called on loop
 
+# time1 & time2 = preset time values that determine the amount of time the program waits for each call below
 # necessary libraries & modules
 
 import time 
@@ -57,12 +59,16 @@ def no_p_no_c():
     print("case 1")
 
     if (H == 2 and L == 0):
+        print("light road yellow")
         L = 1
         time.sleep(2) 
+        print("light road red")
         L = 2
         time.sleep(1)
+        print("heavy road green")
         H = 0
     else:
+        print("default: heavy road green and light road red")
         H = 0
         L = 2
     P = 0
@@ -96,8 +102,11 @@ def no_p_yes_c():
     time.sleep(1)
     print("light road green")
     L = 0
-    print("cars passing")
-    time.sleep(time2) # cars passing
+    print("cars passing...")
+    for i in range (0, time2, 1):
+        print(i+1)
+        time.sleep(1)
+    # time.sleep(time2)
     P = 0
     C = 0
     ICD_C = 1
@@ -130,8 +139,11 @@ def yes_p_no_c():
     time.sleep(1)
     print("light road green")
     L = 0
-    print("pedestrian crossing")
-    time.sleep(time2) # pedestrians crossing
+    print("pedestrians crossing...")
+    for i in range (0, time2, 1):
+        print(i+1)
+        time.sleep(1)
+    # time.sleep(time2)
     P = 0
     C = 0
     ICD_P = 1
@@ -165,7 +177,11 @@ def yes_p_yes_c():
     time.sleep(1)
     print("light road green")
     L = 0
-    time.sleep(time2) # pedestrians crossing
+    print("pedestrians and cars passing...")
+    for i in range (0, time2, 1):
+        print(i+1)
+        time.sleep(1)
+    # time.sleep(time2) 
     P = 0
     C = 0
     ICD_P = 1
