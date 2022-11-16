@@ -38,7 +38,8 @@ L = 2
 ICD_P = 0
 ICD_C = 0
 
-ICD_check = 0
+ICD_checker_P = 0
+ICD_checker_C = 0
 
 time1 = 5
 time2 = 5
@@ -170,50 +171,56 @@ def yes_p_yes_c():
     ICD_P = 1
     ICD_C = 1
 
-def check_ICD():
+def check_ICD_P():
     # global variable declarations
     global ICD_P
-    global ICD_C
-
-    global ICD_check
+    global ICD_checker_P
 
     global time2
 
-    # print("base")
+    if (ICD_P == 1 and ICD_checker_P == 0):
 
-    if (ICD_P == 1 and ICD_check == 0):
-        # print("pre pedestrian")
-        ICD_check = 1
+        ICD_checker_P = 1
         time.sleep(time2)
-        # print("post pedestrian")
+
         ICD_P = 0
-        ICD_check = 0
+        ICD_checker_P = 0
 
-    if (ICD_C == 1 and ICD_check == 0):
-        # print("pre car")
-        ICD_check = 1
+def check_ICD_C():
+    # global variable declarations
+    global ICD_C
+    global ICD_checker_C
+
+    global time2
+    
+    if (ICD_C == 1 and ICD_checker_C == 0):
+
+        ICD_checker_C = 1
         time.sleep(time2)
-        # print("post car")
+
         ICD_C = 0
-        ICD_check = 0
+        ICD_checker_C = 0
 
 if __name__ == '__main__':
 
     while (True):
         # threading functions declaration
-        x = Thread(target = no_p_no_c)
-        y = Thread(target = no_p_yes_c)
-        w = Thread(target = yes_p_no_c)
-        z = Thread(target = yes_p_yes_c)
-        check = Thread(target = check_ICD)
+    
+        check_P = Thread(target = check_ICD_P)
+        check_C = Thread(target = check_ICD_C)
 
+        # x = Thread(target = no_p_no_c)
+        # y = Thread(target = no_p_yes_c)
+        # w = Thread(target = yes_p_no_c)
+        # z = Thread(target = yes_p_yes_c)
+        
         P = int(input("enter P"))
         if (P != 0 and P != 1):
             print("please enter a P value of either 0 or 1")
         C = int(input("enter C"))
         if (C != 0 and C != 1):
             print("please enter a C value of either 0 or 1")
-            
+
         # time.sleep(1)
         
         if (P == 0 and C == 0):
@@ -229,7 +236,8 @@ if __name__ == '__main__':
             # z.start()
             yes_p_yes_c()
             
-        check.start()
+        check_P.start()
+        check_C.start()
 
         print("P is: " + str(P))
         print("C is: " + str(C))
