@@ -30,17 +30,6 @@ import asyncio
 
 from threading import Thread
 
-import serial # used to send signals to the serial port; allows for arduino control
-
-# declare necessary variables for serial port control
-
-# print(serial.__version__)
-
-PORT = "/dev/tty.usbmodem14201"
-SERIAL = 9600
-
-ser = serial.Serial(PORT, SERIAL)
-
 # global variables
 
 P = 0
@@ -72,25 +61,21 @@ def no_p_no_c():
     if (H == 2 and L == 0):
         print("light road yellow")
         L = 1
-        ser.write(b'LY')
 
         time.sleep(2) 
 
         print("light road red")
         L = 2
-        ser.write(b'LR')
 
         time.sleep(1)
         
         print("heavy road green")
         H = 0
-        ser.write(b'HG')
+
     else:
         print("default: heavy road green and light road red")
         H = 0
-        ser.write(b'HG')
         L = 2
-        ser.write(b'LR')
 
     P = 0
     C = 0
@@ -118,19 +103,16 @@ def no_p_yes_c():
     
     print("heavy road yellow")
     H = 1
-    ser.write(b'HY')
 
     time.sleep(2)
 
     print("heavy road red")
     H = 2
-    ser.write(b'HR')
 
     time.sleep(1)
 
     print("light road green")
     L = 0
-    ser.write(b'LG')
 
     print("cars passing...")
     for i in range (0, time2, 1):
@@ -164,19 +146,16 @@ def yes_p_no_c():
 
     print("heavy road yellow")
     H = 1
-    ser.write(b'HY')
 
     time.sleep(2)
     
     print("heavy road red")
     H = 2
-    ser.write(b'HR')
 
     time.sleep(1)
 
     print("light road green")
     L = 0
-    ser.write(b'LG')
 
     print("pedestrians crossing...")
     for i in range (0, time2, 1):
@@ -211,19 +190,16 @@ def yes_p_yes_c():
 
     print("heavy road yellow")
     H = 1
-    ser.write(b'HY')
 
     time.sleep(2)
 
     print("heavy road red")
     H = 2
-    ser.write(b'HR')
 
     time.sleep(1)
 
     print("light road green")
     L = 0
-    ser.write(b'LG')
 
     print("pedestrians and cars passing...")
     for i in range (0, time2, 1):
