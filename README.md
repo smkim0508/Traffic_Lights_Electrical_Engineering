@@ -14,10 +14,10 @@ In order to run the arduino control function via pyserial, first create an Ardui
 ```
 yourVar = Serial.read();
 
-if (yourVar = LG) { // LG = light traffic road green
+if (yourVar == 'LG') { // LG = light traffic road green
     digitalWrite(yourPin1, HIGH);
 }
-if (yourVar = HG) { // HG = heavy traffic road green
+if (yourVar == 'HG') { // HG = heavy traffic road green
     digitalWrite(yourPin2, HIGH);
 } 
 ...
