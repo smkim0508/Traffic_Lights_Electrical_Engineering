@@ -30,6 +30,17 @@ import asyncio
 
 from threading import Thread
 
+import serial # used to send signals to the serial port; allows for arduino control
+
+# declare necessary variables for serial port control
+
+# print(serial.__version__)
+
+PORT = "/dev/tty.usbmodem14201"
+SERIAL = 9600
+
+ser = serial.Serial(PORT, SERIAL)
+
 # global variables
 
 P = 0
@@ -47,7 +58,7 @@ time1 = 5
 time2 = 5
 
 def no_p_no_c():
-    # global variable declarations
+    # global variable local declaration
     global H
     global L
     global P
@@ -61,21 +72,31 @@ def no_p_no_c():
     if (H == 2 and L == 0):
         print("light road yellow")
         L = 1
+        ser.write(b'LY')
+
         time.sleep(2) 
+
         print("light road red")
         L = 2
+        ser.write(b'LR')
+
         time.sleep(1)
+        
         print("heavy road green")
         H = 0
+        ser.write(b'HG')
     else:
         print("default: heavy road green and light road red")
         H = 0
+        ser.write(b'HG')
         L = 2
+        ser.write(b'LR')
+
     P = 0
     C = 0
 
 def no_p_yes_c():
-    # global variable declarations
+    # global variable local declaration
     global H
     global L
     global P
@@ -94,25 +115,34 @@ def no_p_yes_c():
 
     print("buffer time")
     time.sleep(time2)
+    
     print("heavy road yellow")
     H = 1
+    ser.write(b'HY')
+
     time.sleep(2)
+
     print("heavy road red")
     H = 2
+    ser.write(b'HR')
+
     time.sleep(1)
+
     print("light road green")
     L = 0
+    ser.write(b'LG')
+
     print("cars passing...")
     for i in range (0, time2, 1):
         print(i+1)
         time.sleep(1)
-    # time.sleep(time2)
+
     P = 0
     C = 0
     ICD_C = 1
 
 def yes_p_no_c():
-    # global variable declarations
+    # global variable local declaration
     global H
     global L
     global P
@@ -131,25 +161,34 @@ def yes_p_no_c():
 
     print("buffer time")
     time.sleep(time1)
+
     print("heavy road yellow")
     H = 1
+    ser.write(b'HY')
+
     time.sleep(2)
+    
     print("heavy road red")
     H = 2
+    ser.write(b'HR')
+
     time.sleep(1)
+
     print("light road green")
     L = 0
+    ser.write(b'LG')
+
     print("pedestrians crossing...")
     for i in range (0, time2, 1):
         print(i+1)
         time.sleep(1)
-    # time.sleep(time2)
+
     P = 0
     C = 0
     ICD_P = 1
 
 def yes_p_yes_c():
-    # global variable declarations
+    # global variable local declaration
     global H
     global L
     global P
@@ -169,19 +208,28 @@ def yes_p_yes_c():
         
     print("buffer time")
     time.sleep(time1)
+
     print("heavy road yellow")
     H = 1
+    ser.write(b'HY')
+
     time.sleep(2)
+
     print("heavy road red")
     H = 2
+    ser.write(b'HR')
+
     time.sleep(1)
+
     print("light road green")
     L = 0
+    ser.write(b'LG')
+
     print("pedestrians and cars passing...")
     for i in range (0, time2, 1):
         print(i+1)
         time.sleep(1)
-    # time.sleep(time2) 
+
     P = 0
     C = 0
     ICD_P = 1
