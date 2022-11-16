@@ -21,7 +21,7 @@
 
 # ICD = Internal Cooldown; the time between each function call is permitted
 
-#necessary libraries & modules
+# necessary libraries & modules
 
 import time 
 import asyncio
@@ -214,10 +214,10 @@ if __name__ == '__main__':
         # w = Thread(target = yes_p_no_c)
         # z = Thread(target = yes_p_yes_c)
         
-        P = int(input("enter P"))
+        P = int(input("enter P: "))
         if (P != 0 and P != 1):
             print("please enter a P value of either 0 or 1")
-        C = int(input("enter C"))
+        C = int(input("enter C: "))
         if (C != 0 and C != 1):
             print("please enter a C value of either 0 or 1")
 
