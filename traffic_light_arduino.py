@@ -147,6 +147,25 @@ def no_p_yes_c():
         print(i+1)
         time.sleep(1)
 
+    print("light road yellow")
+    L = 1
+    # ser.write(b'LY')
+    ser.write(b'E')
+
+    time.sleep(2) 
+
+    print("light road red")
+    L = 2
+    # ser.write(b'LR')
+    ser.write(b'F')
+
+    time.sleep(1)
+    
+    print("heavy road green")
+    H = 0
+    # ser.write(b'HG')
+    ser.write(b'A')
+    
     P = 0
     C = 0
     ICD_C = 1
@@ -195,6 +214,25 @@ def yes_p_no_c():
     for i in range (0, time2, 1):
         print(i+1)
         time.sleep(1)
+
+    print("light road yellow")
+    L = 1
+    # ser.write(b'LY')
+    ser.write(b'E')
+
+    time.sleep(2) 
+
+    print("light road red")
+    L = 2
+    # ser.write(b'LR')
+    ser.write(b'F')
+
+    time.sleep(1)
+    
+    print("heavy road green")
+    H = 0
+    # ser.write(b'HG')
+    ser.write(b'A')
 
     P = 0
     C = 0
@@ -245,6 +283,25 @@ def yes_p_yes_c():
     for i in range (0, time2, 1):
         print(i+1)
         time.sleep(1)
+    
+    print("light road yellow")
+    L = 1
+    # ser.write(b'LY')
+    ser.write(b'E')
+
+    time.sleep(2) 
+
+    print("light road red")
+    L = 2
+    # ser.write(b'LR')
+    ser.write(b'F')
+
+    time.sleep(1)
+    
+    print("heavy road green")
+    H = 0
+    # ser.write(b'HG')
+    ser.write(b'A')
 
     P = 0
     C = 0
