@@ -72,25 +72,32 @@ def no_p_no_c():
     if (H == 2 and L == 0):
         print("light road yellow")
         L = 1
-        ser.write(b'LY')
+        # ser.write(b'LY')
+        ser.write(b'E')
 
         time.sleep(2) 
 
         print("light road red")
         L = 2
-        ser.write(b'LR')
+        # ser.write(b'LR')
+        ser.write(b'F')
 
         time.sleep(1)
         
         print("heavy road green")
         H = 0
-        ser.write(b'HG')
+        # ser.write(b'HG')
+        ser.write(b'A')
+
     else:
         print("default: heavy road green and light road red")
         H = 0
-        ser.write(b'HG')
+        # ser.write(b'HG')
+        ser.write(b'A')
+
         L = 2
-        ser.write(b'LR')
+        # ser.write(b'LR')
+        ser.write(b'F')
 
     P = 0
     C = 0
@@ -118,19 +125,22 @@ def no_p_yes_c():
     
     print("heavy road yellow")
     H = 1
-    ser.write(b'HY')
+    # ser.write(b'HY')
+    ser.write(b'B')
 
     time.sleep(2)
 
     print("heavy road red")
     H = 2
-    ser.write(b'HR')
+    # ser.write(b'HR')
+    ser.write(b'C')
 
     time.sleep(1)
 
     print("light road green")
     L = 0
-    ser.write(b'LG')
+    # ser.write(b'LG')
+    ser.write(b'D')
 
     print("cars passing...")
     for i in range (0, time2, 1):
@@ -164,19 +174,22 @@ def yes_p_no_c():
 
     print("heavy road yellow")
     H = 1
-    ser.write(b'HY')
+    # ser.write(b'HY')
+    ser.write(b'B')
 
     time.sleep(2)
     
     print("heavy road red")
     H = 2
-    ser.write(b'HR')
+    # ser.write(b'HR')
+    ser.write(b'C')
 
     time.sleep(1)
 
     print("light road green")
     L = 0
-    ser.write(b'LG')
+    # ser.write(b'LG')
+    ser.write(b'D')
 
     print("pedestrians crossing...")
     for i in range (0, time2, 1):
@@ -211,19 +224,22 @@ def yes_p_yes_c():
 
     print("heavy road yellow")
     H = 1
-    ser.write(b'HY')
+    # ser.write(b'HY')
+    ser.write(b'B')
 
     time.sleep(2)
 
     print("heavy road red")
     H = 2
-    ser.write(b'HR')
+    # ser.write(b'HR')
+    ser.write(b'C')
 
     time.sleep(1)
 
     print("light road green")
     L = 0
-    ser.write(b'LG')
+    # ser.write(b'LG')
+    ser.write(b'D')
 
     print("pedestrians and cars passing...")
     for i in range (0, time2, 1):

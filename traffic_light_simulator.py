@@ -30,7 +30,7 @@ import time
 
 from threading import Thread
 
-# global variables
+# global 
 
 P = 0
 C = 0
